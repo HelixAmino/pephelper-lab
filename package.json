@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "deploy": "vite build && wrangler deploy --config dist/server/wrangler.json",
     "cf:login": "wrangler login",
-    "cf:tail": "wrangler tail tanstack-start-app"
+    "cf:tail": "wrangler tail pephelper"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
