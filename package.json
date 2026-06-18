@@ -9,7 +9,10 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "vite build && wrangler deploy --config dist/server/wrangler.json",
+    "cf:login": "wrangler login",
+    "cf:tail": "wrangler tail tanstack-start-app"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
