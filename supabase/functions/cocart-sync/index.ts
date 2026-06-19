@@ -99,7 +99,7 @@ Deno.serve(async (req: Request) => {
     JSON.stringify({
       cart_key: cartKey,
       checkout_url: cartKey
-        ? `https://floorabovebrands.com/checkout/?cart_key=${encodeURIComponent(cartKey)}`
+        ? `https://floorabovebrands.com/checkout/?cocart-load-cart=${encodeURIComponent(cartKey)}&notify=false`
         : null,
       errors,
     }),
