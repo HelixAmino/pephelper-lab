@@ -29,8 +29,8 @@ export const Route = createFileRoute("/research-disclaimer")({
           </p>
           <p>
             Our products are <strong>not intended to diagnose, treat, cure, or
-            prevent any disease</strong>, and are not suitable for human or
-            veterinary use, consumption, or administration.
+            prevent any disease</strong>, and are not suitable for in-vivo use,
+            consumption, or administration.
           </p>
           <h2 className="text-xl font-semibold text-navy">Customer responsibilities</h2>
           <p>
