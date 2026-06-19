@@ -14,7 +14,6 @@ import {
   SYRINGE_ADDON_SKU,
   SYRINGE_TRIGGER_SKUS,
 } from "@/lib/products";
-import { useProductImageMap } from "@/lib/use-product-images";
 
 const RESERVE_SECONDS = 10 * 60;
 
@@ -40,7 +39,6 @@ function useReservationTimer(active: boolean) {
 export function LiveCart() {
   const { lines, subtotal, itemCount } = useCart();
   const hydrated = useHydrated();
-  const imageMap = useProductImageMap();
   const { pathname } = useLocation();
   const active = hydrated && lines.length > 0;
   const timer = useReservationTimer(active);
@@ -129,9 +127,9 @@ export function LiveCart() {
           {lines.map((l) => (
             <li key={l.sku} className="flex gap-3 px-4 py-3">
               <div className="h-14 w-14 shrink-0 overflow-hidden rounded-md border border-border bg-card">
-                {imageMap[l.sku] ? (
+                {l.image ? (
                   <img
-                    src={imageMap[l.sku]}
+                    src={l.image}
                     alt={l.product.imageAlt}
                     loading="lazy"
                     className="h-full w-full object-cover"

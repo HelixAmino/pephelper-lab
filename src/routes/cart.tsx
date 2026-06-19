@@ -11,7 +11,6 @@ import {
   useHydrated,
 } from "@/lib/cart-store";
 import { redirectToBackendCheckout } from "@/lib/checkout";
-import { useProductImageMap } from "@/lib/use-product-images";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   PREP_PAD_ADDON_SKU,
@@ -30,7 +29,6 @@ export const Route = createFileRoute("/cart")({
 function CartPage() {
   const { lines, subtotal } = useCart();
   const hydrated = useHydrated();
-  const imageMap = useProductImageMap();
   const [redirecting, setRedirecting] = useState(false);
 
   const hasTriggerItem = lines.some((l) => PREP_PAD_TRIGGER_SKUS.has(l.sku));
@@ -100,7 +98,7 @@ function CartPage() {
                   <div className="w-24 shrink-0">
                     <ProductImage
                       alt={l.product.imageAlt}
-                      src={imageMap[l.sku]}
+                      src={l.image}
                     />
                   </div>
                   <div className="flex flex-1 flex-col">

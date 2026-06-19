@@ -7,6 +7,7 @@
  */
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { PRODUCTS, type Product } from "./products";
+import { PRODUCT_IMAGES } from "./product-images";
 
 export interface CartLine {
   sku: string;
@@ -67,6 +68,7 @@ export function clearCart() {
 
 export interface EnrichedLine extends CartLine {
   product: Product;
+  image: string;
   subtotal: number;
 }
 
@@ -82,7 +84,12 @@ export function useCart() {
     .map((l) => {
       const product = PRODUCTS.find((p) => p.sku === l.sku);
       if (!product) return null;
-      return { ...l, product, subtotal: product.price * l.quantity };
+      return {
+        ...l,
+        product,
+        image: PRODUCT_IMAGES[product.slug] ?? "",
+        subtotal: product.price * l.quantity,
+      };
     })
     .filter((x): x is EnrichedLine => x !== null);
 
