@@ -15,7 +15,6 @@ import { Testimonials } from "@/components/Testimonials";
 import { FAQSection } from "@/components/FAQSection";
 import { PrecisionSection } from "@/components/PrecisionSection";
 import { PRODUCTS } from "@/lib/products";
-import heroVials from "@/assets/hero-vials.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -159,8 +158,8 @@ function HomePage() {
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-teal/20 via-transparent to-navy/10 blur-3xl" />
             <div className="relative w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
               <img
-                src={heroVials}
-                alt="Sterile lab-grade glass vials with aluminum caps"
+                src="/images/bigbundle.jpg"
+                alt="PepHelper Ultimate Bundle — bacteriostatic water vials, insulin syringes, and alcohol prep pads"
                 width={1600}
                 height={1024}
                 className="h-full w-full object-cover transition duration-700 hover:scale-[1.02]"
