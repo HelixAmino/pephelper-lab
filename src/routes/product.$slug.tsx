@@ -9,6 +9,12 @@ import { addItem } from "@/lib/cart-store";
 import { toast } from "sonner";
 import logoUrl from "@/assets/pephelper-logo.png";
 
+const SYRINGE_UNIT_COUNTS: Record<string, number> = {
+  "PH399.030": 100,
+  "PH399.030.3": 300,
+  "PH399.030.AO": 100,
+};
+
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
     const product = getProduct(params.slug);
@@ -67,6 +73,8 @@ function ProductPage() {
   }
 
   const savings = getBundleSavings(product);
+  const syringeUnits = SYRINGE_UNIT_COUNTS[product.sku];
+  const pricePerSyringe = syringeUnits ? product.price / syringeUnits : null;
 
   return (
     <SiteLayout>
@@ -102,6 +110,11 @@ function ProductPage() {
                 ${product.price.toFixed(2)}
               </div>
             )}
+            {pricePerSyringe !== null ? (
+              <div className="mt-1.5 text-xs text-muted-foreground">
+                ${pricePerSyringe.toFixed(3)} per syringe · {syringeUnits} ct
+              </div>
+            ) : null}
 
             <p className="mt-5 text-base text-muted-foreground">
               {product.description}
