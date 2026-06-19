@@ -42,7 +42,6 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
 
   const navLinks = [
     { to: "/shop", label: "Shop" },
-    { to: "/research-disclaimer", label: "Research Use" },
   ] as const;
 
   return (
