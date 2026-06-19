@@ -7,7 +7,7 @@
  */
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { PRODUCTS, type Product } from "./products";
-import { PRODUCT_IMAGES } from "./product-images";
+import { PRODUCT_IMAGES, useProductImageMap } from "./product-images";
 
 export interface CartLine {
   sku: string;
@@ -79,6 +79,7 @@ export function useCart() {
     () => "[]",
   );
   const parsed: CartLine[] = JSON.parse(lines);
+  const imageMap = useProductImageMap();
 
   const enriched: EnrichedLine[] = parsed
     .map((l) => {
@@ -87,7 +88,7 @@ export function useCart() {
       return {
         ...l,
         product,
-        image: PRODUCT_IMAGES[product.slug] ?? "",
+        image: imageMap[product.slug] ?? PRODUCT_IMAGES[product.slug] ?? "",
         subtotal: product.price * l.quantity,
       };
     })

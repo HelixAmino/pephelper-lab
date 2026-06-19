@@ -1,0 +1,12 @@
+-- Point products.image_url to Supabase Storage public URLs (bucket: product-images).
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/singlebac.jpg' WHERE sku = 'PH399.001';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/3bac.jpg'      WHERE sku = 'PH399.003';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/6bac.jpg'      WHERE sku = 'PH399.006';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/10bac.jpg'     WHERE sku = 'PH399.010';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/pin.jpg'       WHERE sku = 'PH399.030';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/pin.jpg'       WHERE sku = 'PH399.030.3';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/pin.jpg'       WHERE sku = 'PH399.030.AO';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/prepad.png'    WHERE sku = 'PH399.020.AO';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/3bundle.jpg'   WHERE sku = 'PH399.101';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/bigbundle.jpg' WHERE sku = 'PH399.102';
+UPDATE products SET image_url = 'https://kdvdydupksducufbauhm.supabase.co/storage/v1/object/public/product-images/bigbundle.jpg' WHERE sku = 'PH399.103';
