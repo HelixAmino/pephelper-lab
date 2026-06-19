@@ -91,10 +91,11 @@ export function LiveCart() {
   ].filter((u) => u.show);
 
   return (
-    <aside
-      aria-label="Live cart"
-      className="pointer-events-none fixed right-4 top-28 z-30 hidden w-80 animate-slide-in-right md:block"
-    >
+    <>
+      <aside
+        aria-label="Live cart"
+        className="pointer-events-none fixed right-4 top-28 z-30 hidden w-80 animate-slide-in-right md:block"
+      >
       <div
         className={`pointer-events-auto overflow-hidden rounded-xl border border-border bg-card shadow-xl ${
           pop ? "animate-cart-pop ring-2 ring-teal/60" : ""
@@ -239,5 +240,25 @@ export function LiveCart() {
         </div>
       </div>
     </aside>
+
+    <Link
+      to="/cart"
+      aria-label={`View cart, ${itemCount} item${itemCount === 1 ? "" : "s"}, $${subtotal.toFixed(2)}`}
+      className={`fixed bottom-4 right-4 z-30 inline-flex items-center gap-2 rounded-full bg-navy px-4 py-3 text-sm font-semibold text-navy-foreground shadow-lg shadow-navy/30 transition hover:bg-navy/90 active:scale-[0.98] md:hidden ${
+        pop ? "animate-cart-pop ring-2 ring-teal/60" : ""
+      }`}
+    >
+      <span className="relative inline-flex h-5 w-5 items-center justify-center">
+        <ShoppingCart className="h-5 w-5" />
+        <span className="absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-teal px-1.5 text-[11px] font-bold text-teal-foreground">
+          {itemCount}
+        </span>
+      </span>
+      <span className="ml-1.5">View cart</span>
+      <span className="ml-1 border-l border-navy-foreground/30 pl-2 font-mono tabular-nums">
+        ${subtotal.toFixed(2)}
+      </span>
+    </Link>
+    </>
   );
 }
