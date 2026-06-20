@@ -15,6 +15,8 @@ export interface CartLine {
 }
 
 const STORAGE_KEY = "pephelper_cart";
+const COUPON_KEY = "pephelper_coupon";
+const DEFAULT_COUPON = "PHFREESHIP";
 const listeners = new Set<() => void>();
 
 function read(): CartLine[] {
@@ -38,6 +40,17 @@ export function subscribe(cb: () => void) {
 
 export function getCart(): CartLine[] {
   return read();
+}
+
+export function getCoupon(): string {
+  if (typeof window === "undefined") return DEFAULT_COUPON;
+  const stored = localStorage.getItem(COUPON_KEY);
+  return stored ?? DEFAULT_COUPON;
+}
+
+export function setCoupon(code: string) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(COUPON_KEY, code);
 }
 
 export function addItem(sku: string, quantity = 1) {

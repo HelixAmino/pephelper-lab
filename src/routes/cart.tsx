@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Minus, Plus, Trash2, ArrowRight, Loader as Loader2 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { ProductImage } from "@/components/ProductImage";
@@ -9,6 +9,8 @@ import {
   removeItem,
   addItem,
   useHydrated,
+  getCoupon,
+  setCoupon as persistCoupon,
 } from "@/lib/cart-store";
 import { redirectToBackendCheckout } from "@/lib/checkout";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -31,6 +33,14 @@ function CartPage() {
   const hydrated = useHydrated();
   const [redirecting, setRedirecting] = useState(false);
   const [coupon, setCoupon] = useState("PHFREESHIP");
+
+  useEffect(() => {
+    setCoupon(getCoupon());
+  }, []);
+
+  useEffect(() => {
+    persistCoupon(coupon);
+  }, [coupon]);
 
   const hasTriggerItem = lines.some((l) => PREP_PAD_TRIGGER_SKUS.has(l.sku));
   const addonInCart = lines.some((l) => l.sku === PREP_PAD_ADDON_SKU);

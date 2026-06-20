@@ -119,12 +119,22 @@ Deno.serve(async (req: Request) => {
     }
   }
 
+  let checkout_url: string | null = null;
+  if (cartKey) {
+    const url = new URL("https://floorabovebrands.com/checkout/");
+    url.searchParams.set("cocart-load-cart", cartKey);
+    url.searchParams.set("notify", "false");
+    if (couponCode) {
+      url.searchParams.set("coupon-code", couponCode);
+      url.searchParams.set("apply_coupon", couponCode);
+    }
+    checkout_url = url.toString();
+  }
+
   return new Response(
     JSON.stringify({
       cart_key: cartKey,
-      checkout_url: cartKey
-        ? `https://floorabovebrands.com/checkout/?cocart-load-cart=${encodeURIComponent(cartKey)}&notify=false`
-        : null,
+      checkout_url,
       errors,
       coupon_applied,
       coupon_error,
