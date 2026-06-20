@@ -30,7 +30,7 @@ function CartPage() {
   const { lines, subtotal } = useCart();
   const hydrated = useHydrated();
   const [redirecting, setRedirecting] = useState(false);
-  const [coupon, setCoupon] = useState("WELCOME10");
+  const [coupon, setCoupon] = useState("PHFREESHIP");
 
   const hasTriggerItem = lines.some((l) => PREP_PAD_TRIGGER_SKUS.has(l.sku));
   const addonInCart = lines.some((l) => l.sku === PREP_PAD_ADDON_SKU);
