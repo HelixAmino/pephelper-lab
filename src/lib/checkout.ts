@@ -11,9 +11,13 @@ interface SyncResponse {
   cart_key: string | null;
   checkout_url: string | null;
   errors: Array<{ sku: string; status: number; body: string }>;
+  coupon_applied: boolean;
+  coupon_error: { status: number; body: string } | null;
 }
 
-export async function syncLocalCartToCoCart(): Promise<SyncResponse> {
+export async function syncLocalCartToCoCart(
+  coupon?: string | null,
+): Promise<SyncResponse> {
   const lines = getLocalCart();
   const res = await fetch(SYNC_ENDPOINT, {
     method: "POST",
@@ -22,7 +26,7 @@ export async function syncLocalCartToCoCart(): Promise<SyncResponse> {
       Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       apikey: SUPABASE_ANON_KEY,
     },
-    body: JSON.stringify({ lines, cart_key: getCartKey() }),
+    body: JSON.stringify({ lines, cart_key: getCartKey(), coupon: coupon ?? null }),
   });
 
   if (!res.ok) {
@@ -34,8 +38,8 @@ export async function syncLocalCartToCoCart(): Promise<SyncResponse> {
   return data;
 }
 
-export async function redirectToBackendCheckout() {
-  const { cart_key, checkout_url, errors } = await syncLocalCartToCoCart();
+export async function redirectToBackendCheckout(coupon?: string | null) {
+  const { cart_key, checkout_url, errors } = await syncLocalCartToCoCart(coupon);
   if (errors.length > 0) {
     console.warn("cocart sync errors", errors);
   }

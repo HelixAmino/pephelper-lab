@@ -30,6 +30,7 @@ function CartPage() {
   const { lines, subtotal } = useCart();
   const hydrated = useHydrated();
   const [redirecting, setRedirecting] = useState(false);
+  const [coupon, setCoupon] = useState("WELCOME10");
 
   const hasTriggerItem = lines.some((l) => PREP_PAD_TRIGGER_SKUS.has(l.sku));
   const addonInCart = lines.some((l) => l.sku === PREP_PAD_ADDON_SKU);
@@ -61,7 +62,7 @@ function CartPage() {
   async function handleCheckout() {
     setRedirecting(true);
     try {
-      await redirectToBackendCheckout();
+      await redirectToBackendCheckout(coupon.trim() || null);
     } catch (err) {
       console.error(err);
       toast.error("Couldn't start checkout. Please try again.");
@@ -216,6 +217,27 @@ function CartPage() {
               <p className="mt-4 rounded-md bg-teal/10 p-3 text-xs font-semibold text-teal">
                 Free standard shipping on every order
               </p>
+              <div className="mt-5">
+                <label
+                  htmlFor="coupon"
+                  className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+                >
+                  Coupon code
+                </label>
+                <input
+                  id="coupon"
+                  type="text"
+                  value={coupon}
+                  onChange={(e) => setCoupon(e.target.value.toUpperCase())}
+                  placeholder="Enter code"
+                  autoComplete="off"
+                  spellCheck={false}
+                  className="mt-1.5 w-full rounded-md border border-border bg-background px-3 py-2 text-sm font-medium uppercase tracking-wide text-navy placeholder:text-muted-foreground placeholder:normal-case focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/30"
+                />
+                <p className="mt-1.5 text-xs text-muted-foreground">
+                  Applied automatically at checkout.
+                </p>
+              </div>
               <button
                 onClick={handleCheckout}
                 disabled={redirecting}

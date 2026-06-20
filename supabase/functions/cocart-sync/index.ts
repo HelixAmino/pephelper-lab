@@ -16,6 +16,7 @@ interface IncomingLine {
 interface SyncRequest {
   lines: IncomingLine[];
   cart_key?: string | null;
+  coupon?: string | null;
 }
 
 async function cocart(
@@ -95,6 +96,29 @@ Deno.serve(async (req: Request) => {
     }
   }
 
+  let coupon_applied = false;
+  let coupon_error: { status: number; body: string } | null = null;
+  const couponCode = (body.coupon ?? "").trim();
+  if (couponCode && cartKey && errors.length < body.lines.length) {
+    const couponRes = await cocart(
+      "/cart/apply-coupon",
+      {
+        method: "POST",
+        body: JSON.stringify({ code: couponCode }),
+      },
+      cartKey,
+    );
+    cartKey = couponRes.cartKey;
+    if (couponRes.res.ok) {
+      coupon_applied = true;
+    } else {
+      coupon_error = {
+        status: couponRes.res.status,
+        body: await couponRes.res.text(),
+      };
+    }
+  }
+
   return new Response(
     JSON.stringify({
       cart_key: cartKey,
@@ -102,6 +126,8 @@ Deno.serve(async (req: Request) => {
         ? `https://floorabovebrands.com/checkout/?cocart-load-cart=${encodeURIComponent(cartKey)}&notify=false`
         : null,
       errors,
+      coupon_applied,
+      coupon_error,
     }),
     {
       status: errors.length === body.lines.length ? 502 : 200,
