@@ -48,5 +48,5 @@ export async function redirectToBackendCheckout(coupon?: string | null) {
   }
   window.location.href =
     checkout_url ??
-    `${BACKEND_CHECKOUT_URL}?cart_key=${encodeURIComponent(cart_key)}`;
+    `${BACKEND_CHECKOUT_URL}?cocart-load-cart=${encodeURIComponent(cart_key)}&store=pephelper`;
 }

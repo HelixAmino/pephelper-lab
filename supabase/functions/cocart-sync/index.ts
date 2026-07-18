@@ -123,6 +123,7 @@ Deno.serve(async (req: Request) => {
   if (cartKey) {
     const url = new URL("https://floorabovebrands.com/checkout/");
     url.searchParams.set("cocart-load-cart", cartKey);
+    url.searchParams.set("store", "pephelper");
     url.searchParams.set("notify", "false");
     if (couponCode) {
       url.searchParams.set("coupon-code", couponCode);
