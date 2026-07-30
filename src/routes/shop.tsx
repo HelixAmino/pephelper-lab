@@ -7,11 +7,11 @@ import logoUrl from "@/assets/pephelper-logo.png";
 export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
-      { title: "Shop — PepHelper Lab Supplies" },
+      { title: "Shop — Lab-Tested Sterile Supplies | PepHelper" },
       {
         name: "description",
         content:
-          "Browse sterile bacteriostatic water, 30G x 5/16\" syringes, alcohol swabs, and research bundles.",
+          "Browse 100% sterile bacteriostatic water (COA available), 30G x 5/16\" syringes, alcohol swabs, and research bundles. Lab tested, purity guaranteed. Certificate of Analysis on file.",
       },
     ],
   }),

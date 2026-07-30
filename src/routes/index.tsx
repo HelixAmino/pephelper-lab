@@ -19,17 +19,20 @@ import { PRODUCTS } from "@/lib/products";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PepHelper — Sterile Lab Supplies for Research" },
+      { title: "PepHelper — 100% Sterile Lab Supplies | COA Available" },
       {
         name: "description",
         content:
-          "Lab-grade bacteriostatic water, 30G x 5/16\" syringes, and alcohol swabs. Intended for in-vitro use. Fast, free standard shipping on every order.",
+          "Lab-tested bacteriostatic water with Certificate of Analysis. 100% sterile, purity guaranteed. 30G x 5/16\" syringes and alcohol swabs for in-vitro research. Free shipping.",
       },
-      { property: "og:title", content: "PepHelper — Sterile Lab Supplies" },
+      {
+        property: "og:title",
+        content: "PepHelper — Sterile, Lab-Tested Research Supplies | COA on File",
+      },
       {
         property: "og:description",
         content:
-          "Trusted research supplies. For laboratory and in vitro use only.",
+          "Certificate of Analysis available. 100% sterile, purity guaranteed bacteriostatic water and syringes for research.",
       },
     ],
   }),

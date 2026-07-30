@@ -74,11 +74,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PepHelper — Sterile Lab Supplies for Research" },
+      { title: "PepHelper — 100% Sterile Lab Supplies | COA Available" },
       {
         name: "description",
         content:
-          "Lab-grade bacteriostatic water, 30G x 5/16\" syringes, and alcohol swabs. Intended for in-vitro use.",
+          "Lab-tested bacteriostatic water with Certificate of Analysis (COA). 100% sterile, purity guaranteed. 30G x 5/16\" syringes and alcohol swabs for in-vitro research.",
       },
       { name: "author", content: "FAP Wellness LLC" },
       { property: "og:type", content: "website" },

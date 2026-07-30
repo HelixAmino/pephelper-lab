@@ -18,12 +18,19 @@ const SYRINGE_UNIT_COUNTS: Record<string, number> = {
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
     const product = getProduct(params.slug);
+    const suffix = "100% sterile, lab tested, COA available. Purity guaranteed.";
     return {
       meta: [
-        { title: product ? `${product.name} — PepHelper` : "Product — PepHelper" },
+        {
+          title: product
+            ? `${product.name} — Sterile, Lab Tested | PepHelper`
+            : "Product — PepHelper",
+        },
         {
           name: "description",
-          content: product?.shortDescription ?? "Research-grade lab supplies.",
+          content: product
+            ? `${product.shortDescription} ${suffix}`
+            : "Research-grade lab supplies. Certificate of Analysis on file.",
         },
       ],
     };
