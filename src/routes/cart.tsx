@@ -24,7 +24,12 @@ import { toast } from "sonner";
 import logoUrl from "@/assets/pephelper-logo.png";
 
 export const Route = createFileRoute("/cart")({
-  head: () => ({ meta: [{ title: "Your Cart — PepHelper" }] }),
+  head: () => ({
+    meta: [
+      { title: "Your Cart \u2014 PepHelper" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: CartPage,
 });
 

@@ -10,7 +10,7 @@ function Logo() {
     <Link to="/" className="flex items-center" aria-label="PepHelper home">
       <img
         src={logoUrl}
-        alt="PepHelper"
+        alt="PepHelper — sterile bacteriostatic water and lab supplies"
         className="h-12 w-auto md:h-14"
       />
     </Link>
@@ -115,7 +115,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="inline-flex items-center rounded-md bg-white px-3 py-2">
-              <img src={logoUrl} alt="PepHelper" className="h-12 w-auto" />
+              <img src={logoUrl} alt="PepHelper logo — sterile research supplies" className="h-12 w-auto" />
             </div>
             <p className="mt-4 max-w-sm text-sm text-navy-foreground/75">
               Sterile lab supplies not intended for in-vivo use. All PepHelper

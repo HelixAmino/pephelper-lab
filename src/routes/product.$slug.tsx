@@ -7,6 +7,12 @@ import { getProduct, getBundleSavings } from "@/lib/products";
 import { PRODUCT_IMAGES } from "@/lib/product-images";
 import { addItem } from "@/lib/cart-store";
 import { toast } from "sonner";
+import {
+  canonicalLink,
+  ogMeta,
+  productJsonLd,
+  breadcrumbJsonLd,
+} from "@/lib/seo";
 import logoUrl from "@/assets/pephelper-logo.png";
 
 const SYRINGE_UNIT_COUNTS: Record<string, number> = {
@@ -18,19 +24,47 @@ const SYRINGE_UNIT_COUNTS: Record<string, number> = {
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
     const product = getProduct(params.slug);
-    const suffix = "100% sterile, lab tested, COA available. Purity guaranteed.";
+    const path = `/product/${params.slug}`;
+    const suffix =
+      "100% sterile, lab tested, COA available. Purity guaranteed.";
+    if (!product) {
+      return {
+        meta: [
+          { title: "Product \u2014 PepHelper" },
+          {
+            name: "description",
+            content:
+              "Research-grade lab supplies. Certificate of Analysis on file.",
+          },
+          { name: "robots", content: "noindex" },
+        ],
+      };
+    }
+    const imageUrl = PRODUCT_IMAGES[product.slug] || undefined;
+    const title = `${product.name} \u2014 Sterile, Lab Tested | PepHelper`;
+    const description = `${product.shortDescription} ${suffix}`;
     return {
       meta: [
+        { title },
+        { name: "description", content: description },
+        ...ogMeta({
+          title,
+          description,
+          path,
+          image: imageUrl,
+          type: "product",
+        }),
+      ],
+      links: [canonicalLink(path)],
+      scripts: [
+        { type: "application/ld+json", children: productJsonLd(product) },
         {
-          title: product
-            ? `${product.name} — Sterile, Lab Tested | PepHelper`
-            : "Product — PepHelper",
-        },
-        {
-          name: "description",
-          content: product
-            ? `${product.shortDescription} ${suffix}`
-            : "Research-grade lab supplies. Certificate of Analysis on file.",
+          type: "application/ld+json",
+          children: breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Shop", path: "/shop" },
+            { name: product.name, path },
+          ]),
         },
       ],
     };

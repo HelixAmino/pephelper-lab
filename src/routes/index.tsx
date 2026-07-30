@@ -15,25 +15,62 @@ import { Testimonials } from "@/components/Testimonials";
 import { FAQSection } from "@/components/FAQSection";
 import { PrecisionSection } from "@/components/PrecisionSection";
 import { PRODUCTS } from "@/lib/products";
+import {
+  canonicalLink,
+  ogMeta,
+  organizationJsonLd,
+  websiteJsonLd,
+  faqJsonLd,
+} from "@/lib/seo";
+
+const FAQ_ITEMS = [
+  {
+    q: "Who is PepHelper bacteriostatic water for?",
+    a: "PepHelper is designed for researchers, scientists, and lab professionals who require a reliable, sterile reconstitution solution for in-vitro research applications.",
+  },
+  {
+    q: "What is bacteriostatic water used for?",
+    a: "Bacteriostatic water is a sterile solution used to reconstitute or dilute compounds in research and laboratory settings. The 0.9% benzyl alcohol preservative allows the vial to be accessed multiple times while inhibiting bacterial growth.",
+  },
+  {
+    q: "How is PepHelper different from sterile water?",
+    a: "Unlike single-use sterile water, PepHelper bac water contains 0.9% benzyl alcohol which acts as a preservative \u2014 allowing multi-use access to the same vial while maintaining sterility throughout.",
+  },
+  {
+    q: "How should the vials be stored?",
+    a: "Store at room temperature away from direct light. Once opened, vials should be used within the standard multi-dose window consistent with your research protocols.",
+  },
+  {
+    q: "Is there a satisfaction guarantee?",
+    a: "Yes \u2014 if you're not satisfied with your order for any reason, contact us and we'll make it right.",
+  },
+  {
+    q: "How fast do you ship?",
+    a: "Orders placed before 2PM ET ship the same business day. We ship via USPS from the United States, and shipping is free on every order.",
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PepHelper — 100% Sterile Lab Supplies | COA Available" },
+      { title: "PepHelper \u2014 100% Sterile Lab Supplies | COA Available" },
       {
         name: "description",
         content:
           "Lab-tested bacteriostatic water with Certificate of Analysis. 100% sterile, purity guaranteed. 30G x 5/16\" syringes and alcohol swabs for in-vitro research. Free shipping.",
       },
-      {
-        property: "og:title",
-        content: "PepHelper — Sterile, Lab-Tested Research Supplies | COA on File",
-      },
-      {
-        property: "og:description",
-        content:
+      ...ogMeta({
+        title: "PepHelper \u2014 Sterile, Lab-Tested Research Supplies | COA on File",
+        description:
           "Certificate of Analysis available. 100% sterile, purity guaranteed bacteriostatic water and syringes for research.",
-      },
+        path: "/",
+      }),
+    ],
+    links: [canonicalLink("/")],
+    scripts: [
+      { type: "application/ld+json", children: organizationJsonLd() },
+      { type: "application/ld+json", children: websiteJsonLd() },
+      { type: "application/ld+json", children: faqJsonLd(FAQ_ITEMS) },
     ],
   }),
   component: HomePage,

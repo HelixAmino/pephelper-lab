@@ -2,16 +2,33 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { ProductCard } from "@/components/ProductCard";
 import { PRODUCTS } from "@/lib/products";
+import { canonicalLink, ogMeta, breadcrumbJsonLd } from "@/lib/seo";
 import logoUrl from "@/assets/pephelper-logo.png";
 
 export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
-      { title: "Shop — Lab-Tested Sterile Supplies | PepHelper" },
+      { title: "Shop \u2014 Lab-Tested Sterile Supplies | PepHelper" },
       {
         name: "description",
         content:
           "Browse 100% sterile bacteriostatic water (COA available), 30G x 5/16\" syringes, alcohol swabs, and research bundles. Lab tested, purity guaranteed. Certificate of Analysis on file.",
+      },
+      ...ogMeta({
+        title: "Shop \u2014 Lab-Tested Sterile Supplies | PepHelper",
+        description:
+          "100% sterile bacteriostatic water with COA, syringes, and research bundles. Purity guaranteed.",
+        path: "/shop",
+      }),
+    ],
+    links: [canonicalLink("/shop")],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Shop", path: "/shop" },
+        ]),
       },
     ],
   }),

@@ -1,2 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /cart
+Disallow: /welcome
+
+Sitemap: https://pephelper.com/sitemap.xml

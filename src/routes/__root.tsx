@@ -82,7 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "FAP Wellness LLC" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:site_name", content: "PepHelper" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {

@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import { canonicalLink } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — PepHelper" },
+      { title: "Terms of Service \u2014 PepHelper" },
       { name: "description", content: "Terms of Service for pephelper.com." },
     ],
+    links: [canonicalLink("/terms")],
   }),
   component: () => (
     <SiteLayout>
