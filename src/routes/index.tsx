@@ -155,7 +155,7 @@ function HomePage() {
               <ShieldCheck className="h-3.5 w-3.5" /> Lab-grade · cGMP-sourced
             </span>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-navy md:text-5xl lg:text-6xl">
-              Premium Laboratory Grade Supplies,{" "}
+              Premium Bacteriostatic Water &amp; Laboratory Supplies,{" "}
               <span className="text-teal">ready to ship.</span>
             </h1>
             <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">

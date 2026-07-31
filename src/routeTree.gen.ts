@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ResearchDisclaimerRouteImport } from './routes/research-disclaimer'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -27,11 +26,6 @@ const WelcomeRoute = WelcomeRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -71,7 +65,6 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/research-disclaimer': typeof ResearchDisclaimerRoute
   '/shop': typeof ShopRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/welcome': typeof WelcomeRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -82,7 +75,6 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/research-disclaimer': typeof ResearchDisclaimerRoute
   '/shop': typeof ShopRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/welcome': typeof WelcomeRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -94,7 +86,6 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/research-disclaimer': typeof ResearchDisclaimerRoute
   '/shop': typeof ShopRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/welcome': typeof WelcomeRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -107,7 +98,6 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/research-disclaimer'
     | '/shop'
-    | '/sitemap.xml'
     | '/terms'
     | '/welcome'
     | '/product/$slug'
@@ -118,7 +108,6 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/research-disclaimer'
     | '/shop'
-    | '/sitemap.xml'
     | '/terms'
     | '/welcome'
     | '/product/$slug'
@@ -129,7 +118,6 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/research-disclaimer'
     | '/shop'
-    | '/sitemap.xml'
     | '/terms'
     | '/welcome'
     | '/product/$slug'
@@ -141,7 +129,6 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ResearchDisclaimerRoute: typeof ResearchDisclaimerRoute
   ShopRoute: typeof ShopRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   WelcomeRoute: typeof WelcomeRoute
   ProductSlugRoute: typeof ProductSlugRoute
@@ -161,13 +148,6 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -221,7 +201,6 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ResearchDisclaimerRoute: ResearchDisclaimerRoute,
   ShopRoute: ShopRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   WelcomeRoute: WelcomeRoute,
   ProductSlugRoute: ProductSlugRoute,

@@ -13,6 +13,7 @@ export interface Product {
   name: string;
   price: number;
   shortDescription: string;
+  metaDescription: string;
   description: string;
   category: "supplies" | "bundle";
   imageAlt: string;
@@ -27,6 +28,7 @@ export const PRODUCTS: Product[] = [
     name: "10ml Bacteriostatic Water",
     price: 8.5,
     shortDescription: "Single sterile 10ml multi-dose vial. Lab-grade.",
+    metaDescription: "Buy 10ml bacteriostatic water — sterile, multi-dose vial with 0.9% benzyl alcohol. cGMP sourced, COA available. Free US shipping, same-day dispatch.",
     description:
       "One 10ml sterile bacteriostatic water vial. Manufactured under cGMP conditions and intended strictly for in vitro research use only. Tamper-evident seal, individually inspected.",
     category: "supplies",
@@ -39,6 +41,7 @@ export const PRODUCTS: Product[] = [
     name: "3-Pack 10ml Bacteriostatic Water",
     price: 17.99,
     shortDescription: "Three sterile 10ml multi-dose vials. Lab-grade.",
+    metaDescription: "3-Pack bacteriostatic water (10ml each) — sterile, multi-dose vials with 0.9% benzyl alcohol. Lab-tested, COA on file. Free shipping and same-day dispatch.",
     description:
       "Three 10ml sterile bacteriostatic water vials. Manufactured under cGMP conditions and intended strictly for in vitro research use only. Tamper-evident seal, individually inspected.",
     category: "supplies",
@@ -51,6 +54,7 @@ export const PRODUCTS: Product[] = [
     name: "6-Pack 10ml Bacteriostatic Water",
     price: 27.99,
     shortDescription: "Six sterile 10ml multi-dose vials. Lab-grade.",
+    metaDescription: "6-Pack bacteriostatic water (10ml vials) — save more per vial. Sterile, tamper-sealed, cGMP manufactured. Certificate of Analysis on file. Free US shipping.",
     description:
       "Six 10ml sterile bacteriostatic water vials. Manufactured under cGMP conditions and intended strictly for in vitro research use only. Tamper-evident seal, individually inspected.",
     category: "supplies",
@@ -63,6 +67,7 @@ export const PRODUCTS: Product[] = [
     name: "10-Pack 10ml Bacteriostatic Water",
     price: 43.99,
     shortDescription: "Ten sterile 10ml multi-dose vials. Best value.",
+    metaDescription: "Best value: 10-Pack bacteriostatic water (10ml vials) at $4.40/vial. Sterile, tamper-sealed, cGMP sourced with COA. Ships free same-day from the US.",
     description:
       "Ten 10ml sterile bacteriostatic water vials. Manufactured under cGMP conditions and intended strictly for in vitro research use only. Tamper-evident seal, individually inspected.",
     category: "supplies",
@@ -75,6 +80,7 @@ export const PRODUCTS: Product[] = [
     name: "100 x 1mL 100U 30ga x 5/16\" Insulin Syringes",
     price: 19.99,
     shortDescription: "100 sterile 1mL 100U 30ga x 5/16\" insulin syringes.",
+    metaDescription: "100-count 1mL insulin syringes — 30 gauge x 5/16\" needle, individually wrapped, sterile, latex-free. For lab and research use. Free shipping, ships same day.",
     description:
       "Pack of 100 individually wrapped 1mL / 100 unit, 30 gauge x 5/16 inch (8mm) insulin syringes. Sterile, single-use, latex-free. For laboratory and research applications only.",
     category: "supplies",
@@ -88,6 +94,7 @@ export const PRODUCTS: Product[] = [
     price: 47.99,
     shortDescription:
       "Three boxes of 100 sterile 1mL 100U 30ga x 5/16\" insulin syringes (300 total).",
+    metaDescription: "300 insulin syringes (3 boxes of 100) — 1mL, 30ga x 5/16\" needle, sterile and individually wrapped. Save vs single boxes. Free US shipping, same-day dispatch.",
     description:
       "Three boxes of 100 individually wrapped 1mL / 100 unit, 30 gauge x 5/16 inch (8mm) insulin syringes — 300 syringes total. Sterile, single-use, latex-free. For laboratory and research applications only.",
     category: "supplies",
@@ -102,6 +109,7 @@ export const PRODUCTS: Product[] = [
     price: 34.99,
     shortDescription:
       "3 Vials 10ml BAC Water + 100 70% Alcohol Prep Pads + 100 1mL 30ga x 5/16\" Syringes.",
+    metaDescription: "Starter research bundle: 3 bac water vials, 100 alcohol prep pads, and 100 insulin syringes (30ga x 5/16\"). Everything to begin. Free shipping, same-day dispatch.",
     description:
       "The perfect entry-level kit. Includes three Vials 10ml BAC Water, 100 sterile 70% alcohol prep pads, and 100 individually wrapped 1mL 100U 30ga x 5/16 inch (8mm) insulin syringes. Intended for in-vitro use only.",
     category: "bundle",
@@ -115,6 +123,7 @@ export const PRODUCTS: Product[] = [
     price: 43.99,
     shortDescription:
       "6 Vials 10ml BAC Water + 100 70% Alcohol Prep Pads + 100 1mL 30ga x 5/16\" Syringes.",
+    metaDescription: "Value research bundle: 6 bac water vials, 100 alcohol prep pads, and 100 insulin syringes (30ga x 5/16\"). Save over individual items. Free shipping, same-day dispatch.",
     description:
       "Stock up and save. Includes six Vials 10ml BAC Water, 100 sterile 70% alcohol prep pads, and 100 individually wrapped 1mL 100U 30ga x 5/16 inch (8mm) insulin syringes. Intended for in-vitro use only.",
     category: "bundle",
@@ -128,6 +137,7 @@ export const PRODUCTS: Product[] = [
     price: 54.99,
     shortDescription:
       "10 Vials 10ml BAC Water + 100 70% Alcohol Prep Pads + 100 1mL 30ga x 5/16\" Syringes.",
+    metaDescription: "Best value: Ultimate bundle with 10 bac water vials, 100 prep pads, and 100 insulin syringes (30ga x 5/16\"). Over 30% off individual pricing. Free same-day shipping.",
     description:
       "Our best value for high-volume research workflows. Includes ten Vials 10ml BAC Water, 100 sterile 70% alcohol prep pads, and 100 individually wrapped 1mL 100U 30ga x 5/16 inch (8mm) insulin syringes. Intended for in-vitro use only.",
     category: "bundle",
@@ -140,6 +150,7 @@ export const PRODUCTS: Product[] = [
     name: "100 x 1mL 30ga x 5/16\" Insulin Syringes (Add-on)",
     price: 18.99,
     shortDescription: "Sterile single-use 1mL 100U 30ga x 5/16\" syringes.",
+    metaDescription: "Add-on: 100 insulin syringes (1mL, 30ga x 5/16\") at a discounted price when added to your order. Sterile, individually wrapped, latex-free. Free shipping.",
     description:
       "Discounted add-on: 100 individually wrapped 1mL 100U 30 gauge x 5/16 inch (8mm) insulin syringes. Sterile, single-use, latex-free.",
     category: "supplies",
@@ -153,6 +164,7 @@ export const PRODUCTS: Product[] = [
     name: "100 70% Alcohol Prep Pads (Add-on)",
     price: 3.99,
     shortDescription: "70% isopropyl prep pads, sterile, 100 ct.",
+    metaDescription: "Add-on: 100 sterile 70% isopropyl alcohol prep pads, individually foil-wrapped. Maintain sterility in your research workflow. Free shipping on every order.",
     description:
       "Add-on: 100 sterile 70% isopropyl alcohol prep pads. Individually foil-wrapped to maintain sterility.",
     category: "supplies",

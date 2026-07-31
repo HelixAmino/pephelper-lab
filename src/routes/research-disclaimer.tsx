@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
-import { canonicalLink } from "@/lib/seo";
+import { canonicalLink, ogMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/research-disclaimer")({
   head: () => ({
@@ -9,8 +9,14 @@ export const Route = createFileRoute("/research-disclaimer")({
       {
         name: "description",
         content:
-          "All PepHelper products are sold strictly for in vitro research use only.",
+          "All PepHelper products are sold strictly for in vitro research use only. Not intended for human or veterinary use.",
       },
+      ...ogMeta({
+        title: "Research Disclaimer \u2014 PepHelper",
+        description:
+          "All PepHelper products are sold strictly for in vitro research use only. Not intended for human or veterinary use.",
+        path: "/research-disclaimer",
+      }),
     ],
     links: [canonicalLink("/research-disclaimer")],
   }),

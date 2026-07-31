@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { canonicalLink } from "@/lib/seo";
+import { canonicalLink, ogMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -12,6 +12,12 @@ export const Route = createFileRoute("/privacy")({
         content:
           "PepHelper does not sell or share customer data. Read our customer-first privacy policy.",
       },
+      ...ogMeta({
+        title: "Privacy Policy \u2014 PepHelper",
+        description:
+          "PepHelper does not sell or share customer data. Read our customer-first privacy policy.",
+        path: "/privacy",
+      }),
     ],
     links: [canonicalLink("/privacy")],
   }),

@@ -25,8 +25,6 @@ export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
     const product = getProduct(params.slug);
     const path = `/product/${params.slug}`;
-    const suffix =
-      "100% sterile, lab tested, COA available. Purity guaranteed.";
     if (!product) {
       return {
         meta: [
@@ -42,7 +40,7 @@ export const Route = createFileRoute("/product/$slug")({
     }
     const imageUrl = PRODUCT_IMAGES[product.slug] || undefined;
     const title = `${product.name} \u2014 Sterile, Lab Tested | PepHelper`;
-    const description = `${product.shortDescription} ${suffix}`;
+    const description = product.metaDescription;
     return {
       meta: [
         { title },
