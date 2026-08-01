@@ -2,7 +2,18 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { PRODUCTS } from "./lib/products";
+
+const SITEMAP_PRODUCT_SLUGS = [
+  "bac-water-1pack-10ml",
+  "bac-water-3pack-10ml",
+  "bac-water-6pack-10ml",
+  "bac-water-10pack-10ml",
+  "insulin-syringes-30g-100ct",
+  "insulin-syringes-3pack-30g",
+  "bundle-starter",
+  "bundle-value",
+  "bundle-ultimate",
+];
 
 function generateSitemap(): Response {
   const today = new Date().toISOString().slice(0, 10);
@@ -15,8 +26,8 @@ function generateSitemap(): Response {
     { path: "/privacy", priority: "0.2", changefreq: "yearly" },
   ];
 
-  const productPages = PRODUCTS.filter((p) => !p.addOnly).map((p) => ({
-    path: `/product/${p.slug}`,
+  const productPages = SITEMAP_PRODUCT_SLUGS.map((slug) => ({
+    path: `/product/${slug}`,
     priority: "0.8",
     changefreq: "weekly",
   }));
