@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { EmailSignupModal } from "@/components/EmailSignupModal";
-
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {

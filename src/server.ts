@@ -1,61 +1,6 @@
 import "./lib/error-capture";
-
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-
-const SITEMAP_PRODUCT_SLUGS = [
-  "bac-water-1pack-10ml",
-  "bac-water-3pack-10ml",
-  "bac-water-6pack-10ml",
-  "bac-water-10pack-10ml",
-  "insulin-syringes-30g-100ct",
-  "insulin-syringes-3pack-30g",
-  "bundle-starter",
-  "bundle-value",
-  "bundle-ultimate",
-];
-
-function generateSitemap(): Response {
-  const today = new Date().toISOString().slice(0, 10);
-
-  const staticPages = [
-    { path: "/", priority: "1.0", changefreq: "weekly" },
-    { path: "/shop", priority: "0.9", changefreq: "weekly" },
-    { path: "/research-disclaimer", priority: "0.3", changefreq: "yearly" },
-    { path: "/terms", priority: "0.2", changefreq: "yearly" },
-    { path: "/privacy", priority: "0.2", changefreq: "yearly" },
-  ];
-
-  const productPages = SITEMAP_PRODUCT_SLUGS.map((slug) => ({
-    path: `/product/${slug}`,
-    priority: "0.8",
-    changefreq: "weekly",
-  }));
-
-  const all = [...staticPages, ...productPages];
-
-  const xml = [
-    `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
-    ...all.map(
-      (entry) =>
-        `  <url>` +
-        `<loc>https://pephelper.com${entry.path}</loc>` +
-        `<lastmod>${today}</lastmod>` +
-        `<changefreq>${entry.changefreq}</changefreq>` +
-        `<priority>${entry.priority}</priority>` +
-        `</url>`,
-    ),
-    `</urlset>`,
-  ].join("\n");
-
-  return new Response(xml, {
-    headers: {
-      "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600",
-    },
-  });
-}
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -123,11 +68,6 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
-    const url = new URL(request.url);
-    if (url.pathname === "/sitemap.xml") {
-      return generateSitemap();
-    }
-
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
