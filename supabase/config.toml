@@ -1,0 +1,17 @@
+[functions.cocart-sync]
+verify_jwt = false
+
+[functions.subscribe]
+verify_jwt = false
+
+[functions.upload-product-image]
+verify_jwt = false
+
+[functions.verify-email]
+verify_jwt = false
+
+[functions.wc-set-visibility]
+verify_jwt = false
+
+[functions.wc-create-products]
+verify_jwt = false
