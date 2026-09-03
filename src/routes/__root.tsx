@@ -8,7 +8,6 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
-import { EmailSignupModal } from "@/components/EmailSignupModal";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -122,7 +121,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
-      <EmailSignupModal />
       <Toaster />
     </QueryClientProvider>
   );
