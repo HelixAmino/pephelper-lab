@@ -1,13 +1,10 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { ProductCard } from "@/components/ProductCard";
 import { PRODUCTS, CATEGORY_META } from "@/lib/products";
 import { canonicalLink, ogMeta, breadcrumbJsonLd } from "@/lib/seo";
 import logoUrl from "@/assets/pephelper-logo.png";
-
-/* ------------------------------------------------------------------ */
-/*  Filter definitions                                                */
-/* ------------------------------------------------------------------ */
 
 type FilterKey = "all" | "supplies" | "pens" | "cold-storage" | "vial-storage";
 
@@ -19,11 +16,7 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: "vial-storage", label: CATEGORY_META["vial-storage"].label },
 ];
 
-/** Which product categories each filter key includes */
-function matchesFilter(
-  filter: FilterKey,
-  category: string,
-): boolean {
+function matchesFilter(filter: FilterKey, category: string): boolean {
   switch (filter) {
     case "all":
       return true;
@@ -40,7 +33,6 @@ function matchesFilter(
   }
 }
 
-/** Description shown beneath the heading when a specific filter is active */
 function filterDescription(filter: FilterKey): string | null {
   switch (filter) {
     case "supplies":
@@ -56,28 +48,17 @@ function filterDescription(filter: FilterKey): string | null {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/*  Route                                                             */
-/* ------------------------------------------------------------------ */
-
-const VALID_FILTERS = new Set<string>(FILTERS.map((f) => f.key));
-
 export const Route = createFileRoute("/shop")({
-  validateSearch: (search: Record<string, unknown>): { category?: FilterKey } => {
-    const raw = typeof search.category === "string" ? search.category : undefined;
-    if (!raw || !VALID_FILTERS.has(raw)) return {};
-    return { category: raw as FilterKey };
-  },
   head: () => ({
     meta: [
-      { title: "Shop — Lab-Tested Sterile Supplies | PepHelper" },
+      { title: "Shop \u2014 Lab-Tested Sterile Supplies | PepHelper" },
       {
         name: "description",
         content:
-          "Browse 100% sterile bacteriostatic water (COA available), 30G x 5/16\" syringes, alcohol swabs, and research bundles. Lab tested, purity guaranteed. Certificate of Analysis on file.",
+          'Browse 100% sterile bacteriostatic water (COA available), 30G x 5/16" syringes, alcohol swabs, and research bundles. Lab tested, purity guaranteed. Certificate of Analysis on file.',
       },
       ...ogMeta({
-        title: "Shop — Lab-Tested Sterile Supplies | PepHelper",
+        title: "Shop \u2014 Lab-Tested Sterile Supplies | PepHelper",
         description:
           "100% sterile bacteriostatic water with COA, syringes, and research bundles. Purity guaranteed.",
         path: "/shop",
@@ -97,22 +78,8 @@ export const Route = createFileRoute("/shop")({
   component: ShopPage,
 });
 
-/* ------------------------------------------------------------------ */
-/*  Component                                                         */
-/* ------------------------------------------------------------------ */
-
 function ShopPage() {
-  const { category } = Route.useSearch();
-  const activeFilter: FilterKey = category ?? "all";
-  const navigate = useNavigate();
-
-  const setFilter = (key: FilterKey) => {
-    navigate({
-      to: "/shop",
-      search: key === "all" ? {} : { category: key },
-      replace: true,
-    });
-  };
+  const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
 
   const filtered = PRODUCTS.filter(
     (p) => !p.addOnly && matchesFilter(activeFilter, p.category),
@@ -129,24 +96,27 @@ function ShopPage() {
             Shop
           </h1>
           <p className="mt-2 max-w-2xl text-muted-foreground">
-            Sterile, research-grade supplies. All products are intended for in-vitro research use.
+            Sterile, research-grade supplies. All products are intended for
+            in-vitro research use.
           </p>
         </header>
 
-        {/* Category filter tabs */}
-        <nav className="flex flex-wrap gap-2 pt-6" aria-label="Product category filters">
+        <nav
+          className="flex flex-wrap gap-2 pt-6"
+          aria-label="Product category filters"
+        >
           {FILTERS.map(({ key, label }) => {
             const isActive = key === activeFilter;
             return (
               <button
                 key={key}
                 type="button"
-                onClick={() => setFilter(key)}
+                onClick={() => setActiveFilter(key)}
                 className={
                   "rounded-full px-4 py-1.5 text-sm font-medium transition-colors " +
                   (isActive
-                    ? "bg-teal-600 text-white shadow-sm"
-                    : "border border-border text-muted-foreground hover:border-teal-600 hover:text-teal-600")
+                    ? "bg-teal text-white shadow-sm"
+                    : "border border-border text-muted-foreground hover:border-teal hover:text-teal")
                 }
                 aria-pressed={isActive}
               >
@@ -156,7 +126,6 @@ function ShopPage() {
           })}
         </nav>
 
-        {/* Category description */}
         {description && (
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
             {description}

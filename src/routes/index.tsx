@@ -173,7 +173,6 @@ function HomePage() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 to="/shop"
-                search={{}}
                 className="inline-flex items-center gap-2 rounded-md bg-navy px-5 py-3 text-sm font-semibold text-navy-foreground transition hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-md"
               >
                 Order now <ArrowRight className="h-4 w-4" />
@@ -247,7 +246,7 @@ function HomePage() {
               The essentials, ready to ship.
             </h2>
           </div>
-          <Link to="/shop" search={{}} className="text-sm font-semibold text-teal hover:underline">
+          <Link to="/shop" className="text-sm font-semibold text-teal hover:underline">
             View all →
           </Link>
         </div>
@@ -319,7 +318,6 @@ function HomePage() {
               <Link
                 key={cat.title}
                 to="/shop"
-                search={{ category: cat.category }}
                 className="group flex flex-col rounded-xl border border-border bg-card p-6 transition hover:border-teal hover:shadow-md"
               >
                 <cat.icon className="h-8 w-8 text-teal" />

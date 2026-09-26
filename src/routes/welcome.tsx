@@ -145,7 +145,6 @@ function WelcomePage() {
               </p>
               <Link
                 to="/shop"
-                search={{}}
                 className="mt-7 inline-flex items-center gap-2 rounded-md bg-navy px-6 py-3 text-sm font-semibold text-navy-foreground transition hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-md"
               >
                 Start shopping <ArrowRight className="h-4 w-4" />

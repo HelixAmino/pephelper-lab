@@ -73,7 +73,7 @@ export const Route = createFileRoute("/product/$slug")({
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
         <img src={logoUrl} alt="PepHelper" className="mx-auto h-16 w-auto md:h-20" />
         <h1 className="mt-6 text-2xl font-semibold text-navy">Product not found</h1>
-        <Link to="/shop" search={{}} className="mt-4 inline-block text-teal hover:underline">
+        <Link to="/shop" className="mt-4 inline-block text-teal hover:underline">
           ← Back to shop
         </Link>
       </div>
@@ -158,7 +158,7 @@ function ProductPage() {
         <div className="mx-auto max-w-3xl px-4 py-24 text-center">
           <img src={logoUrl} alt="PepHelper" className="mx-auto h-16 w-auto md:h-20" />
           <h1 className="mt-6 text-2xl font-semibold text-navy">Product not found</h1>
-          <Link to="/shop" search={{}} className="mt-4 inline-block text-teal hover:underline">
+          <Link to="/shop" className="mt-4 inline-block text-teal hover:underline">
             ← Back to shop
           </Link>
         </div>
@@ -186,7 +186,7 @@ function ProductPage() {
     <SiteLayout>
       <div className="mx-auto max-w-6xl px-4 py-10">
         <img src={logoUrl} alt="PepHelper" className="h-14 w-auto md:h-16" />
-        <Link to="/shop" search={{}} className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-teal">
+        <Link to="/shop" className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-teal">
           <ArrowLeft className="h-4 w-4" /> Back to shop
         </Link>
 

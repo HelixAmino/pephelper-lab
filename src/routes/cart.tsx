@@ -98,7 +98,6 @@ function CartPage() {
             <p className="text-muted-foreground">Your cart is empty.</p>
             <Link
               to="/shop"
-              search={{}}
               className="mt-6 inline-flex items-center gap-2 rounded-md bg-navy px-5 py-3 text-sm font-semibold text-navy-foreground hover:bg-navy/90"
             >
               Browse products <ArrowRight className="h-4 w-4" />
