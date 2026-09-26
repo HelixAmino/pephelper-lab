@@ -85,7 +85,9 @@ function HomePage() {
 
   const MOBILE_PRIORITY_SKUS = [
     "PH399.003",
+    "PH399.040",
     "PH399.006",
+    "PH399.050",
     "PH399.030",
     "PH399.101",
     "PH399.102",
