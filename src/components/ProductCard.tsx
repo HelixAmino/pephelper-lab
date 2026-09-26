@@ -10,6 +10,11 @@ export function ProductCard({ product }: { product: Product }) {
   const savings = getBundleSavings(product);
   const [added, setAdded] = useState(false);
 
+  const hasProductImages = product.images && product.images.length > 0;
+  const imageSrc = hasProductImages
+    ? product.images![0].src
+    : PRODUCT_IMAGES[product.slug];
+
   function handleQuickAdd(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     e.stopPropagation();
@@ -27,7 +32,8 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="relative">
         <ProductImage
           alt={product.imageAlt}
-          src={PRODUCT_IMAGES[product.slug]}
+          src={imageSrc}
+          contain={hasProductImages}
         />
         <button
           type="button"

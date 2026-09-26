@@ -28,7 +28,7 @@ export const Route = createFileRoute("/product/$slug")({
     if (!product) {
       return {
         meta: [
-          { title: "Product \u2014 PepHelper" },
+          { title: "Product — PepHelper" },
           {
             name: "description",
             content:
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/product/$slug")({
       };
     }
     const imageUrl = PRODUCT_IMAGES[product.slug] || undefined;
-    const title = `${product.name} \u2014 Sterile, Lab Tested | PepHelper`;
+    const title = `${product.name} — Sterile, Lab Tested | PepHelper`;
     const description = product.metaDescription;
     return {
       meta: [
@@ -73,13 +73,78 @@ export const Route = createFileRoute("/product/$slug")({
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
         <img src={logoUrl} alt="PepHelper" className="mx-auto h-16 w-auto md:h-20" />
         <h1 className="mt-6 text-2xl font-semibold text-navy">Product not found</h1>
-        <Link to="/shop" className="mt-4 inline-block text-teal hover:underline">
+        <Link to="/shop" search={{}} className="mt-4 inline-block text-teal hover:underline">
           ← Back to shop
         </Link>
       </div>
     </SiteLayout>
   ),
 });
+
+function ImageGallery({ images }: { images: { src: string; alt: string }[] }) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const current = images[selectedIndex];
+
+  return (
+    <div>
+      {/* Main image */}
+      <div className="aspect-square w-full overflow-hidden rounded-lg border border-border bg-white">
+        <img
+          src={current.src}
+          alt={current.alt}
+          className="h-full w-full object-contain"
+        />
+      </div>
+
+      {/* Thumbnails */}
+      {images.length > 1 && (
+        <div className="mt-3 flex gap-2 overflow-x-auto">
+          {images.map((img, i) => (
+            <button
+              key={i}
+              onClick={() => setSelectedIndex(i)}
+              className={`h-16 w-16 shrink-0 overflow-hidden rounded-md border-2 bg-white transition-colors ${
+                i === selectedIndex
+                  ? "border-teal ring-1 ring-teal/30"
+                  : "border-border hover:border-teal/50"
+              }`}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="h-full w-full object-contain"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProductDescription({ description }: { description: string }) {
+  const isHtml = description.includes("<");
+
+  if (isHtml) {
+    return (
+      <div
+        className={[
+          "mt-5",
+          "[&_h4]:mt-6 [&_h4]:mb-2 [&_h4]:text-sm [&_h4]:font-semibold [&_h4]:uppercase [&_h4]:tracking-wide [&_h4]:text-navy",
+          "[&_ul]:ml-4 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:text-sm [&_ul]:text-muted-foreground",
+          "[&_p]:text-base [&_p]:text-muted-foreground",
+          "[&_strong]:text-foreground/90 [&_strong]:font-medium",
+          "[&_li]:text-muted-foreground",
+        ].join(" ")}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+    );
+  }
+
+  return (
+    <p className="mt-5 text-base text-muted-foreground">{description}</p>
+  );
+}
 
 function ProductPage() {
   const { slug } = Route.useParams();
@@ -93,7 +158,7 @@ function ProductPage() {
         <div className="mx-auto max-w-3xl px-4 py-24 text-center">
           <img src={logoUrl} alt="PepHelper" className="mx-auto h-16 w-auto md:h-20" />
           <h1 className="mt-6 text-2xl font-semibold text-navy">Product not found</h1>
-          <Link to="/shop" className="mt-4 inline-block text-teal hover:underline">
+          <Link to="/shop" search={{}} className="mt-4 inline-block text-teal hover:underline">
             ← Back to shop
           </Link>
         </div>
@@ -115,17 +180,23 @@ function ProductPage() {
   const syringeUnits = SYRINGE_UNIT_COUNTS[product.sku];
   const pricePerSyringe = syringeUnits ? product.price / syringeUnits : null;
 
+  const hasGalleryImages = product.images && product.images.length > 0;
+
   return (
     <SiteLayout>
       <div className="mx-auto max-w-6xl px-4 py-10">
         <img src={logoUrl} alt="PepHelper" className="h-14 w-auto md:h-16" />
-        <Link to="/shop" className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-teal">
+        <Link to="/shop" search={{}} className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-teal">
           <ArrowLeft className="h-4 w-4" /> Back to shop
         </Link>
 
         <div className="mt-6 grid gap-10 md:grid-cols-2">
           <div>
-            <ProductImage alt={product.imageAlt} src={PRODUCT_IMAGES[product.slug]} />
+            {hasGalleryImages ? (
+              <ImageGallery images={product.images!} />
+            ) : (
+              <ProductImage alt={product.imageAlt} src={PRODUCT_IMAGES[product.slug]} />
+            )}
           </div>
 
           <div className="flex flex-col">
@@ -155,9 +226,7 @@ function ProductPage() {
               </div>
             ) : null}
 
-            <p className="mt-5 text-base text-muted-foreground">
-              {product.description}
-            </p>
+            <ProductDescription description={product.description} />
 
             <ul className="mt-6 space-y-2 text-sm">
               {[

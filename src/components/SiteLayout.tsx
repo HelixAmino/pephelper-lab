@@ -41,8 +41,8 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   const navLinks = [
-    { to: "/shop", label: "Shop" },
-  ] as const;
+    { to: "/shop" as const, search: {} as Record<string, string>, label: "Shop" },
+  ];
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -71,6 +71,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
               <Link
                 key={l.to}
                 to={l.to}
+                search={l.search}
                 className="text-sm font-medium text-foreground/80 hover:text-teal"
                 activeProps={{ className: "text-teal" }}
               >
@@ -96,6 +97,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
                 <Link
                   key={l.to}
                   to={l.to}
+                  search={l.search}
                   onClick={() => setOpen(false)}
                   className="py-3 text-sm font-medium text-foreground"
                 >
@@ -128,7 +130,10 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
           <div>
             <h4 className="text-sm font-semibold text-navy-foreground">Shop</h4>
             <ul className="mt-3 space-y-2 text-sm text-navy-foreground/75">
-              <li><Link to="/shop" className="hover:text-teal">All Products</Link></li>
+              <li><Link to="/shop" search={{}} className="hover:text-teal">All Products</Link></li>
+              <li><Link to="/shop" search={{ category: "pens" }} className="hover:text-teal">Pen Injectors &amp; Cartridges</Link></li>
+              <li><Link to="/shop" search={{ category: "cold-storage" }} className="hover:text-teal">Coolers &amp; Mini Fridges</Link></li>
+              <li><Link to="/shop" search={{ category: "vial-storage" }} className="hover:text-teal">Vial Storage</Link></li>
               <li><Link to="/cart" className="hover:text-teal">Cart</Link></li>
             </ul>
           </div>

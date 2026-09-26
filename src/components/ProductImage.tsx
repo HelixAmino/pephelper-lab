@@ -4,21 +4,23 @@ export function ProductImage({
   alt,
   src,
   className = "",
+  contain = false,
 }: {
   alt: string;
   src?: string;
   className?: string;
+  contain?: boolean;
 }) {
   if (src) {
     return (
       <div
-        className={`aspect-square w-full overflow-hidden rounded-lg border border-border bg-card ${className}`}
+        className={`aspect-square w-full overflow-hidden rounded-lg border border-border ${contain ? "bg-white" : "bg-card"} ${className}`}
       >
         <img
           src={src}
           alt={alt}
           loading="lazy"
-          className="h-full w-full object-cover"
+          className={`h-full w-full ${contain ? "object-contain" : "object-cover"}`}
         />
       </div>
     );

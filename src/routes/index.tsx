@@ -6,6 +6,9 @@ import {
   BadgeCheck,
   ArrowRight,
   Star,
+  Syringe,
+  Snowflake,
+  Package,
 } from "lucide-react";
 import { FreeShippingBanner } from "@/components/FreeShippingBanner";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -170,6 +173,7 @@ function HomePage() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 to="/shop"
+                search={{}}
                 className="inline-flex items-center gap-2 rounded-md bg-navy px-5 py-3 text-sm font-semibold text-navy-foreground transition hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-md"
               >
                 Order now <ArrowRight className="h-4 w-4" />
@@ -243,7 +247,7 @@ function HomePage() {
               The essentials, ready to ship.
             </h2>
           </div>
-          <Link to="/shop" className="text-sm font-semibold text-teal hover:underline">
+          <Link to="/shop" search={{}} className="text-sm font-semibold text-teal hover:underline">
             View all →
           </Link>
         </div>
@@ -273,6 +277,60 @@ function HomePage() {
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             {bundles.map((p) => (
               <ProductCard key={p.sku} product={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* New categories */}
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-4 py-16">
+          <p className="text-sm font-semibold uppercase tracking-widest text-teal">
+            New arrivals
+          </p>
+          <h2 className="mt-2 text-3xl font-semibold text-navy md:text-4xl">
+            Beyond the basics
+          </h2>
+          <p className="mt-2 max-w-2xl text-muted-foreground">
+            Pen injectors, cold storage, and vial cases — everything you need to
+            store, transport, and dispense.
+          </p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Pen Injectors & Cartridges",
+                desc: "Reusable pen injectors, replacement tips, and glass cartridges.",
+                icon: Syringe,
+                category: "pens" as const,
+              },
+              {
+                title: "Coolers & Mini Fridges",
+                desc: "Compact digital coolers and mini refrigerators for vial storage.",
+                icon: Snowflake,
+                category: "cold-storage" as const,
+              },
+              {
+                title: "Vial Storage",
+                desc: "Hard-shell cases with foam-lined slots for safe vial transport.",
+                icon: Package,
+                category: "vial-storage" as const,
+              },
+            ].map((cat) => (
+              <Link
+                key={cat.title}
+                to="/shop"
+                search={{ category: cat.category }}
+                className="group flex flex-col rounded-xl border border-border bg-card p-6 transition hover:border-teal hover:shadow-md"
+              >
+                <cat.icon className="h-8 w-8 text-teal" />
+                <h3 className="mt-4 text-lg font-semibold text-navy group-hover:text-teal">
+                  {cat.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">{cat.desc}</p>
+                <span className="mt-4 text-sm font-medium text-teal">
+                  Shop now →
+                </span>
+              </Link>
             ))}
           </div>
         </div>
