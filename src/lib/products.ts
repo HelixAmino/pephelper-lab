@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
     sku: "PH399.001",
     slug: "bac-water-1pack-10ml",
     name: "10ml Bacteriostatic Water",
-    price: 8.5,
+    price: 9.75,
     shortDescription: "Single sterile 10ml multi-dose vial. Lab-grade.",
     metaDescription: "Buy 10ml bacteriostatic water — sterile, multi-dose vial with 0.9% benzyl alcohol. cGMP sourced, COA available. Free US shipping, same-day dispatch.",
     description:
