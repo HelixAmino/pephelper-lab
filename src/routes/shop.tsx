@@ -95,6 +95,19 @@ function ShopPage() {
     (p) => !p.addOnly && matchesFilter(activeFilter, p.category),
   );
 
+  const FEATURED_ORDER: Record<string, number> = {
+    "PH399.003": 0,
+    "PH399.040": 1,
+  };
+
+  const sorted = activeFilter === "all"
+    ? [...filtered].sort((a, b) => {
+        const oa = FEATURED_ORDER[a.sku] ?? 99;
+        const ob = FEATURED_ORDER[b.sku] ?? 99;
+        return oa - ob;
+      })
+    : filtered;
+
   const description = filterDescription(activeFilter);
 
   return (
@@ -144,7 +157,7 @@ function ShopPage() {
 
         <section className="py-10">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
+            {sorted.map((p) => (
               <ProductCard key={p.sku} product={p} />
             ))}
           </div>
