@@ -15,12 +15,14 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: "vial-storage", label: CATEGORY_META["vial-storage"].label },
 ];
 
-function matchesFilter(filter: FilterKey, category: string): boolean {
+const SUPPLIES_AND_PENS = new Set(["PH399.050", "PH399.060"]);
+
+function matchesFilter(filter: FilterKey, category: string, sku: string): boolean {
   switch (filter) {
     case "all":
       return true;
     case "supplies":
-      return category === "supplies" || category === "bundle";
+      return category === "supplies" || category === "bundle" || SUPPLIES_AND_PENS.has(sku);
     case "pens":
       return category === "pens";
     case "cold-storage":
@@ -92,7 +94,7 @@ function ShopPage() {
   }
 
   const filtered = PRODUCTS.filter(
-    (p) => !p.addOnly && matchesFilter(activeFilter, p.category),
+    (p) => !p.addOnly && matchesFilter(activeFilter, p.category, p.sku),
   );
 
   const FEATURED_ORDER: Record<string, number> = {
