@@ -232,7 +232,7 @@ function ProductPage() {
               {[
                 "Sterile & individually sealed",
                 "Sourced from cGMP-compliant manufacturers",
-                "Ships USPS from the United States",
+                "Ships free from the United States",
                 "Intended for in-vitro use",
               ].map((b) => (
                 <li key={b} className="flex items-start gap-2">

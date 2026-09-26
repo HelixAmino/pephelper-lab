@@ -56,8 +56,7 @@ export const Route = createFileRoute("/terms")({
 
           <h2 className="text-xl font-semibold text-navy">4. Shipping</h2>
           <p>
-            All orders ship free via USPS Ground Advantage or UPS Ground.
-            Upgraded shipping available via USPS Priority Mail ($12 flat, 1–3 business
+            All orders ship free. Upgraded shipping available ($12 flat, 1–3 business
             days). Orders over $100 receive upgraded shipping free. Delivery
             times are estimates, not guarantees.
           </p>

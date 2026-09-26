@@ -28,7 +28,7 @@ const FAQ = [
   },
   {
     q: "How fast do you ship?",
-    a: "Orders placed before 2PM ET ship the same business day. We ship via USPS from the United States, and shipping is free on every order.",
+    a: "Orders placed before 2PM ET ship the same business day. We ship from the United States, and shipping is free on every order.",
   },
 ];
 

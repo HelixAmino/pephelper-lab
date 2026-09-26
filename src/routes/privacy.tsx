@@ -70,7 +70,7 @@ export const Route = createFileRoute("/privacy")({
           <p>
             We share the minimum data necessary with the following service
             providers to operate the store: our payment processor, our
-            shipping carrier (USPS), and our order/store backend
+            shipping carrier, and our order/store backend
             (WooCommerce). They are contractually limited to using your data
             only to perform their services for us.
           </p>

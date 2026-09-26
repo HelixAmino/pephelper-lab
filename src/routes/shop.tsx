@@ -102,13 +102,37 @@ function ShopPage() {
     "PH399.040": 1,
   };
 
-  const sorted = activeFilter === "all"
-    ? [...filtered].sort((a, b) => {
+  const SUPPLIES_ORDER: Record<string, number> = {
+    "PH399.003": 0,
+    "PH399.050": 1,
+    "PH399.006": 2,
+    "PH399.030": 3,
+    "PH399.030.3": 4,
+    "PH399.060": 5,
+    "PH399.101": 6,
+    "PH399.102": 7,
+    "PH399.103": 8,
+    "PH399.010": 9,
+    "PH399.001": 10,
+  };
+
+  const sorted = (() => {
+    if (activeFilter === "all") {
+      return [...filtered].sort((a, b) => {
         const oa = FEATURED_ORDER[a.sku] ?? 99;
         const ob = FEATURED_ORDER[b.sku] ?? 99;
         return oa - ob;
-      })
-    : filtered;
+      });
+    }
+    if (activeFilter === "supplies") {
+      return [...filtered].sort((a, b) => {
+        const oa = SUPPLIES_ORDER[a.sku] ?? 50;
+        const ob = SUPPLIES_ORDER[b.sku] ?? 50;
+        return oa - ob;
+      });
+    }
+    return filtered;
+  })();
 
   const description = filterDescription(activeFilter);
 
