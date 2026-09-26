@@ -50,7 +50,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
       <div className="border-b border-border bg-navy text-xs text-navy-foreground/90">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-1 px-4 py-2 text-center">
           <span className="font-medium">
-            Same-day shipping on orders before 2PM ET
+            Same-day shipping on orders before 3PM ET
           </span>
           <span className="hidden text-navy-foreground/40 sm:inline">·</span>
           <span className="hidden font-medium text-teal sm:inline">
