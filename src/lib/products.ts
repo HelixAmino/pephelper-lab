@@ -178,9 +178,9 @@ export const PRODUCTS: Product[] = [
     slug: "pen-injector-gansulin",
     name: "Pen Injector \u2013 Gansulin",
     price: 59.99,
-    shortDescription: "Reusable dial-dose pen injector in matte green with protective cap, clip, and zip carry case.",
-    metaDescription: "Reusable Gansulin dial-dose pen injector in matte green with zip carry case. Twist dial with dose window, protective cap with pocket clip. Free US shipping.",
-    description: '<p>A reusable dial-dose pen injector in a matte green finish with a protective cap and pocket clip. Comes with a zip carry case for safe storage and transport.</p>\n<h4>Features</h4>\n<ul>\n<li>Twist dial with dose window for easy reading</li>\n<li>Protective cap with pocket clip</li>\n<li>Zip carry case included</li>\n<li>Reusable design</li>\n</ul>',
+    shortDescription: "Aluminum reusable dial-dose pen injector in matte green with protective cap, clip, and zip carry case.",
+    metaDescription: "Aluminum Gansulin dial-dose pen injector in matte green with zip carry case. Twist dial with dose window, protective cap with pocket clip. Free US shipping.",
+    description: '<p>A reusable aluminum dial-dose pen injector in a matte green finish with a protective cap and pocket clip. Comes with a zip carry case for safe storage and transport.</p>\n<h4>Features</h4>\n<ul>\n<li>Durable aluminum body</li>\n<li>Twist dial with dose window for easy reading</li>\n<li>Protective cap with pocket clip</li>\n<li>Zip carry case included</li>\n<li>Reusable design</li>\n</ul>',
     category: "pens",
     imageAlt: "Gansulin pen injector",
     images: [
