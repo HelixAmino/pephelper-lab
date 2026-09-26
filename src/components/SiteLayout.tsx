@@ -41,8 +41,12 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   const navLinks = [
-    { to: "/shop", label: "Shop" },
-  ] as const;
+    { to: "/shop", search: {}, label: "All Products" },
+    { to: "/shop", search: { cat: "supplies" }, label: "Supplies" },
+    { to: "/shop", search: { cat: "pens" }, label: "Pen Injectors" },
+    { to: "/shop", search: { cat: "cold-storage" }, label: "Coolers" },
+    { to: "/shop", search: { cat: "vial-storage" }, label: "Vial Storage" },
+  ];
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -66,13 +70,15 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <Logo />
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((l) => (
               <Link
-                key={l.to}
+                key={l.label}
                 to={l.to}
-                className="text-sm font-medium text-foreground/80 hover:text-teal"
-                activeProps={{ className: "text-teal" }}
+                search={l.search}
+                className="rounded-md px-3 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-teal"
+                activeOptions={{ exact: true, includeSearch: true }}
+                activeProps={{ className: "bg-teal/10 text-teal" }}
               >
                 {l.label}
               </Link>
@@ -94,10 +100,13 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
             <div className="mx-auto flex max-w-7xl flex-col px-4 py-2">
               {navLinks.map((l) => (
                 <Link
-                  key={l.to}
+                  key={l.label}
                   to={l.to}
+                  search={l.search}
                   onClick={() => setOpen(false)}
                   className="py-3 text-sm font-medium text-foreground"
+                  activeOptions={{ exact: true, includeSearch: true }}
+                  activeProps={{ className: "text-teal" }}
                 >
                   {l.label}
                 </Link>

@@ -1,5 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { ProductCard } from "@/components/ProductCard";
 import { PRODUCTS, CATEGORY_META } from "@/lib/products";
@@ -49,6 +48,11 @@ function filterDescription(filter: FilterKey): string | null {
 }
 
 export const Route = createFileRoute("/shop")({
+  validateSearch: (search: Record<string, unknown>): { cat?: FilterKey } => {
+    const raw = search.cat as string | undefined;
+    const valid: FilterKey[] = ["all", "supplies", "pens", "cold-storage", "vial-storage"];
+    return raw && valid.includes(raw as FilterKey) ? { cat: raw as FilterKey } : {};
+  },
   head: () => ({
     meta: [
       { title: "Shop \u2014 Lab-Tested Sterile Supplies | PepHelper" },
@@ -79,7 +83,13 @@ export const Route = createFileRoute("/shop")({
 });
 
 function ShopPage() {
-  const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
+  const { cat } = Route.useSearch();
+  const navigate = useNavigate();
+  const activeFilter: FilterKey = cat ?? "all";
+
+  function setActiveFilter(key: FilterKey) {
+    navigate({ to: "/shop", search: key === "all" ? {} : { cat: key }, replace: true });
+  }
 
   const filtered = PRODUCTS.filter(
     (p) => !p.addOnly && matchesFilter(activeFilter, p.category),
