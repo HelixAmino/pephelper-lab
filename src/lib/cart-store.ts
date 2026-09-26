@@ -101,7 +101,7 @@ export function useCart() {
       return {
         ...l,
         product,
-        image: imageMap[product.slug] ?? PRODUCT_IMAGES[product.slug] ?? "",
+        image: product.images?.[0]?.src ?? imageMap[product.slug] ?? PRODUCT_IMAGES[product.slug] ?? "",
         subtotal: product.price * l.quantity,
       };
     })
